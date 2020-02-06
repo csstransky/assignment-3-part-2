@@ -31,7 +31,7 @@ df->set(0, 0, new String("error")); // this will cause an error
 
 ## Column
 
-A Column can only be constructed strictly by its type. This is to ensure that each Column is strictly made of its type.  
+A Column can only be constructed strictly by its type. This is to ensure that each Column is strictly made of its type. The Column class is simply an abstract class.  
 Example:
 ```
 IntColumn* ic = new IntColumn();
@@ -50,13 +50,14 @@ IntColumn* ic = new IntColumn(header, 1, 4, 5);
 BoolColumn* bc = new BoolColumn(0, 1, 0, 1);
 bc->set_header(header);
 
-// Because of the nature of StringColumn, if there are more than two cells and no header, then a nullptr must be used as the first argument
+// Because of the nature of StringColumn, if there are more than two cells 
+// and no header, then a nullptr must be used as the first argument
 StringColumn* stc = new StringColumn(nullptr, new String("hello"), new String("bye"));
 
-// The constructor still acts the same if there is a header though
+// The StringColumn constructor still acts the same if there is a header
 StringColumn* stc2 = new StringColumn(header, new String("one"), new String("two"));
 ```
-Getter and setter methods are made similiarily to how they're handled in a DataFrame, and type is enforced or else an error will be thrown.  
+Getter and setter methods are made similiarily to how they're handled in a DataFrame, and Column type is still enforced while using these functions, prompting an error to be thrown when the Column type does not match.  
 Example:
 ```
 BoolColumn* sc = new BoolColumn(0, 1);
@@ -67,12 +68,12 @@ sc->set(0, 12); // throws an error
 To ensure that the column is a specific type, a Boolean function can be used. This is done through overriding the function with each Column class.  
 Example:
 ```
-BoolColumn* sc = new BoolColumn(0, 1);
-if (sc->is_bool_column()) {
-    sc->get_bool(1);
+BoolColumn* bc = new BoolColumn(0, 1);
+if (bc->is_bool_column()) {
+    bc->get_bool(1);
 }
-if (sc->is_string_column()) {
-    sc->get_string(0); // error avoided
+if (bc->is_string_column()) {
+    bc->get_string(0); // error avoided
 }
 ```
 

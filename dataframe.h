@@ -10,6 +10,10 @@
  * (optionally named) columns of equal length.
  * 
  * Spec here: http://janvitek.org/events/NEU/4500/s20/projects2.html
+ * 
+ * Authors: 
+ *      csstransky - stransky.c@husky.neu.edu
+ *      kaylindevchand - devchand.k@husky.neu.edu
  */
 class DataFrame : public Object {
     public:

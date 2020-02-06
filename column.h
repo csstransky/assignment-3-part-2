@@ -21,6 +21,10 @@
  *          // it will use functions from its FloatColumn* subclass
  *          float_column->set(12.32);
  *      }
+ * 
+ * Authors: 
+ *      csstransky - stransky.c@husky.neu.edu
+ *      kaylindevchand - devchand.k@husky.neu.edu
  */
 class Column : public Object {
     public:
