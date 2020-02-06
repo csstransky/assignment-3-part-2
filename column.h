@@ -207,8 +207,11 @@ class Column : public Object {
     // Open an issue or pull request based off your implementation. 
 };
 
-
-TODO ddo thi sthing
+/**
+ * A Column made entirely of integers.
+ * 
+ * NOTE: The default value for an "empty" integer is 0
+ */
 class IntColumn : public Column {
     public:
     /* Constructs an empty IntColumn with no header (nullptr) */
@@ -235,18 +238,41 @@ class IntColumn : public Column {
     /**
      * Determines if another object is equal to this one.
      * 
+     * @param obj - The Object that will be compared 
      * @return For an IntColumn to equal another IntColumn, all of their elements must be the same,
      * and the order of those elements must also be the same.
      */
     bool equals(Object* const obj);
 
+    /**
+     * Gets an int from the IntColumn at a specified row.
+     * 
+     * @param row - The numbered row of the Column (starting at 0)
+     * @return The int inside of the cell at the specified row
+     */
     int get_int(size_t row);
 
+    /**
+     * Sets the int value inside of the IntColumn at a specified row.
+     * 
+     * @param row - The numbered row of the Column (starting at 0)
+     * @param int_value - The int value to be added to the cell of the Column
+     */
     void set(size_t row, int int_value);
 
-    bool is_string_column();
+    /**
+     * Finds whether or not the Column is an IntColumn or not.
+     * 
+     * @return True if the Column class is an IntColumn, false otherwise.
+     */
+    bool is_int_column();
 };
 
+/**
+ * A Column made entirely of floats.
+ * 
+ * NOTE: The default value for an "empty" float is 0.0
+ */
 class FloatColumn : public Column {
     public:
     /* Constructs an empty FloatColumn with no header (nullptr) */
@@ -270,24 +296,44 @@ class FloatColumn : public Column {
     /* Deconstructs the FloatColumn */
     ~FloatColumn();
 
-
-
-
     /**
      * Determines if another object is equal to this one.
      * 
+     * @param obj - The Object that will be compared 
      * @return For an FloatColumn to equal another FloatColumn, all of their elements must be the 
      * same, and the order of those elements must also be the same.
      */
     bool equals(Object* const obj);
 
+    /**
+     * Gets a float from the FloatColumn at a specified row.
+     * 
+     * @param row - The numbered row of the Column (starting at 0)
+     * @return The float inside of the cell at the specified row
+     */
     float get_float(size_t row);
 
+    /**
+     * Sets the float value inside of the FloatColumn at a specified row.
+     * 
+     * @param row - The numbered row of the Column (starting at 0)
+     * @param float_value - The float value to be added to the cell of the Column
+     */
     void set(size_t row, float float_value);
 
+    /**
+     * Finds whether or not the Column is an FloatColumn or not.
+     * 
+     * @return True if the Column class is an FloatColumn, false otherwise.
+     */
     bool is_float_column();
 };
 
+/**
+ * A Column made entirely of Booleans.
+ * 
+ * NOTE: The default value for an "empty" Boolean is false.
+ */
 class BoolColumn : public Column {
     public:
     /* Constructs an empty BoolColumn with no header (nullptr) */
@@ -312,20 +358,43 @@ class BoolColumn : public Column {
     ~BoolColumn();
 
     /**
-     * Determines if another object is equal to this one.
+     * Determinesfl if another object is equal to this one.
      * 
+     * @param obj - The Object that will be compared 
      * @return For an BoolColumn to equal another BoolColumn, all of their elements must be the 
      * same, and the order of those elements must also be the same.
      */
     bool equals(Object* const obj);
 
+    /**
+     * Gets a Bool from the BoolColumn at a specified row.
+     * 
+     * @param row - The numbered row of the Column (starting at 0)
+     * @return The Boolean inside of the cell at the specified row
+     */
     bool get_bool(size_t row);
 
+    /**
+     * Sets the Bool value inside of the BoolColumn at a specified row.
+     * 
+     * @param row - The numbered row of the Column (starting at 0)
+     * @param bool_value - The Boolean value to be added to the cell of the Column
+     */
     void set(size_t row, bool bool_value);
 
+    /**
+     * Finds whether or not the Column is an BoolColumn or not.
+     * 
+     * @return True if the Column class is an BoolColumn, false otherwise.
+     */
     bool is_bool_column();
 };
 
+/**
+ * A Column made entirely of Strings.
+ * 
+ * NOTE: The default value for an "empty" String is ""
+ */
 class StringColumn : public Column {
     public:
     /* Constructs an empty StringColumn with no header (nullptr) */
@@ -352,14 +421,32 @@ class StringColumn : public Column {
     /**
      * Determines if another object is equal to this one.
      * 
+     * @param obj - The Object that will be compared 
      * @return For an StringColumn to equal another StringColumn, all of their elements must be the
      * same, and the order of those elements must also be the same.
      */
     bool equals(Object* const obj);
 
+    /**
+     * Gets a String from the StringColumn at a specified row.
+     * 
+     * @param row - The numbered row of the Column (starting at 0)
+     * @return The String inside of the cell at the specified row
+     */
     String* get_string(size_t row);
 
+    /**
+     * Sets the String value inside of the StringColumn at a specified row.
+     * 
+     * @param row - The numbered row of the Column (starting at 0)
+     * @param string_value - The String value to be added to the cell of the Column
+     */
     void set(size_t row, String* string_value);
 
+    /**
+     * Finds whether or not the Column is an StringColumn or not.
+     * 
+     * @return True if the Column class is an StringColumn, false otherwise.
+     */
     bool is_string_column();
 };
