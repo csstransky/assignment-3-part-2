@@ -404,6 +404,13 @@ class StringColumn : public Column {
      * Constructs a StringColumn based off an amount of Strings.
      * No header will be specified and be set to nullptr.
      * 
+     * NOTE: Because of the nature of a StringColumn holding String, if you wish to create a 
+     * StringColumn with more than 1 String element AND NO HEADER, you must include a nullptr as
+     * the first argument. This is to prevent the first String value inadvertently becoming the
+     * header. Example:
+     * 
+     * StringColumn* sc = new StringColumn(nullptr, new String("string1"), new String("string2"));
+     * 
      * @param nums - An amount of Strings that will be added to the StringColumn
      */
     StringColumn(String* strings, ...);
