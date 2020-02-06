@@ -7,7 +7,7 @@ Though this API can still handle specific manipulation of Columns if desired; ex
 
 ## DataFrame
 
-A DataFrame is made of Columns. These columns can be accessed by type with the following functions:
+A DataFrame is made of Columns. The cells inside the Column can be accessed by type with the following functions:
 
 ```
 String* get_string(size_t row, size_t column);
@@ -24,6 +24,7 @@ FloatColumn* fc = new FloatColumn(2.3, 43.3);
 DataFrame* df = new DataFrame(ic, fc);
 df->set(0, 0, 13);
 df->set(0, 1, 2.2);
+
 // NOTE: type for the set(...) function must be the same as the Column, or else an error will be thrown
 df->set(0, 0, new String("error")); // this will cause an error
 ```
@@ -35,8 +36,25 @@ Example:
 ```
 IntColumn* ic = new IntColumn();
 FloatColumn* fc = new FloatColumn();
+
 // this constructor is not possible and will throw a compile error
 Column* c = new Column(); // error
+```
+Headers for a Column can also be constructed with the Column or decorated later.  
+Example:
+```
+String* header = new String("Numbers");
+IntColumn* ic = new IntColumn(header, 1, 4, 5);
+
+// It can also be decorated as well
+BoolColumn* bc = new BoolColumn(0, 1, 0, 1);
+bc->set_header(header);
+
+// Because of the nature of StringColumn, if there are more than two cells and no header, then a nullptr must be used as the first argument
+StringColumn* stc = new StringColumn(nullptr, new String("hello"), new String("bye"));
+
+// The constructor still acts the same if there is a header though
+StringColumn* stc2 = new StringColumn(header, new String("one"), new String("two"));
 ```
 Getter and setter methods are made similiarily to how they're handled in a DataFrame, and type is enforced or else an error will be thrown.  
 Example:
@@ -90,7 +108,7 @@ for(size_t ii = 0; ii < df->ncol(); ii++) {
 ```
 ```
 // Adding a row to a dataframe
-DataFrame* df = new DataFrame(new IntColumn(), new FloatColumn());
+DataFrame* df = new DataFrame(new IntColumn(21), new FloatColumn(2.3));
 DataFrame* new_row = new DataFrame(new IntColumn(14), new FloatColumn(2.3));
 df->insert(df->ncol() - 1, new_row);
 
@@ -103,6 +121,7 @@ df->set(df->nrow() - 1, 1, new_float_value);
 ```
 
 ```
+// Querying for all rows with integer values "14" from Column 0 from the DataFrame
 IntColumn sc = new IntColumn(14, 4, 14)
 BoolColumn bc = new BoolColumn(0, 0, 1);
 DataFrame* df = new DataFrame(sc, bc);
@@ -115,5 +134,9 @@ df->print();
 sub_df->print();
 //  0    1
 //  14   0
-//  14   1   
+//  14   1  
+delete df;
+delete sub_df; // querying creates a new dataframe, so it must be deleted
+delete sc;
+delete bc; 
 ```
